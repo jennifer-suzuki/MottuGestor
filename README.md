@@ -1,3 +1,4 @@
+
 # MottuGestor
 
 ## Projeto: API REST para Gestão de Motos e Pátios - Mottu
@@ -51,41 +52,62 @@ az sql db create -g rg-dotnet -s sqlserver-mottugestor -n mottugestordb --servic
 # 3. Adicionar regra de firewall
 az sql server firewall-rule create -g rg-dotnet -s sqlserver-mottugestor -n AllowAll --start-ip-address 0.0.0.0 --end-ip-address 255.255.255.255
 
-# 4. Criar o Web App
-az webapp create \
-  --name mottugestor \
+# 4. Criar o App Service Plan
+az appservice plan create \
+  --name appservice-dotnet \
   --resource-group rg-dotnet \
-  --plan appservice-dotnet \
-  --runtime "DOTNETCORE:8.0" \
-  --deployment-source-url "https://github.com/jenniesuzuki/MottuGestor" \
-  --deployment-source-branch "main"
+  --l brazilsouth
+  --sku B1 \
+  --is-windows
 
-# 5. Acessar o banco de dados Azure criado com as credenciais
+# 5. Criar o Web App
+
+az webapp create -g rg-dotnet -n mottugestortest --plan appservice-dotnet --runtime "DOTNET|8" || true
+
+az webapp deployment source delete -g rg-dotnet -n mottugestortest || true
+
+az webapp config appsettings set -g rg-dotnet -n mottugestortest --settings WEBSITE_RUN_FROM_PACKAGE=1
+
+az webapp stop -g rg-dotnet -n mottugestortest || true
+
+cd ~/MottuGestor
+mv -f global.json global.json.bak || true
+cd MottuGestor.API
+dotnet clean && dotnet restore
+dotnet publish -c Release -o ./publish
+cd publish && zip -r ../app.zip . && cd ..
+
+az webapp deploy -g rg-dotnet -n mottugestortest --src-path app.zip --type zip --restart true || \
+az webapp deployment source config-zip -g rg-dotnet -n mottugestortest --src app.zip
+
+az webapp start -g rg-dotnet -n mottugestortest || true
+
+# 6. Acessar o banco de dados Azure criado com as credenciais
 User: admsql
 Password: Fiap@2025
 
-# 6. Criar as tabelas com o script_bd.sql
+# 7. Criar as tabelas com o script_bd.sql
 
-# 7. Clonar o repositório
-git clone https://github.com/jenniesuzuki/MottuGestor.git
+# 8. Clonar o repositório
+git clone https://github.com/jennifer-suzuki/MottuGestor
 cd MottuGestor
 
-# 8. Ajustar a connection string no appsettings.json
+# 9. Ajustar a connection string no appsettings.json
   "ConnectionStrings": {
     "DefaultConnection": "Server=tcp:sqlserver-mottugestor.database.windows.net,1433;Initial Catalog=mottugestordb;Persist Security Info=False;User ID=admsql;Password=Fiap@2025;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
   }
 
-# 9. Restaurar e dar build no projeto
+# 10. Restaurar e dar build no projeto
 dotnet restore
 dotnet build
 
-# 10. Aplicar migrations
+# 11. Aplicar migrations
 dotnet ef database update --project MottuGestor.Infrastructure --startup-project MottuGestor.API
 
-# 11. Acessar o site após o deploy completo
+# 12. Acessar o site após o deploy completo
 mottugestor.azurewebsites.net
 
-# 12. Testar as requisições
+# 13. Testar as requisições
 ```
 
 ## Endpoints e Testes de exemplo:
