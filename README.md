@@ -42,17 +42,21 @@ Criar uma API que permita a gestão completa das motos, pátios e usuários, com
 ## Passo a passo do deploy
 
 ```bash
-# 1. Criar o Resource group
+
+# 1. Clonar o repositório
+git clone https://github.com/jennifer-suzuki/MottuGestor
+
+# 2. Criar o Resource group
 az group create --name rg-dotnet --location brazilsouth
 
-# 2. Criar o Azure SQL Server e o Azure SQL Database
+# 3. Criar o Azure SQL Server e o Azure SQL Database
 az sql server create -l brazilsouth -g rg-dotnet -n sqlserver-mottugestor -u admsql -p Fiap@2025 --enable-public-network true
 az sql db create -g rg-dotnet -s sqlserver-mottugestor -n mottugestordb --service-objective Free --backup-storage-redundancy Local --zone-redundant false
 
-# 3. Adicionar regra de firewall
+# 4. Adicionar regra de firewall
 az sql server firewall-rule create -g rg-dotnet -s sqlserver-mottugestor -n AllowAll --start-ip-address 0.0.0.0 --end-ip-address 255.255.255.255
 
-# 4. Criar o App Service Plan
+# 5. Criar o App Service Plan
 az appservice plan create \
   --name appservice-dotnet \
   --resource-group rg-dotnet \
@@ -60,7 +64,7 @@ az appservice plan create \
   --sku B1 \
   --is-windows
 
-# 5. Criar o Web App
+# 6. Criar o Web App
 
 az webapp create -g rg-dotnet -n mottugestortest --plan appservice-dotnet --runtime "DOTNET|8" || true
 
@@ -82,32 +86,21 @@ az webapp deployment source config-zip -g rg-dotnet -n mottugestortest --src app
 
 az webapp start -g rg-dotnet -n mottugestortest || true
 
-# 6. Acessar o banco de dados Azure criado com as credenciais
+# 7. Acessar o banco de dados Azure criado com as credenciais
 User: admsql
 Password: Fiap@2025
 
-# 7. Criar as tabelas com o script_bd.sql
-
-# 8. Clonar o repositório
-git clone https://github.com/jennifer-suzuki/MottuGestor
-cd MottuGestor
+# 8. Criar as tabelas com o script_bd.sql
 
 # 9. Ajustar a connection string no appsettings.json
   "ConnectionStrings": {
     "DefaultConnection": "Server=tcp:sqlserver-mottugestor.database.windows.net,1433;Initial Catalog=mottugestordb;Persist Security Info=False;User ID=admsql;Password=Fiap@2025;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
   }
 
-# 10. Restaurar e dar build no projeto
-dotnet restore
-dotnet build
+# 10. Acessar o site após o deploy completo
+mottugestortest.azurewebsites.net
 
-# 11. Aplicar migrations
-dotnet ef database update --project MottuGestor.Infrastructure --startup-project MottuGestor.API
-
-# 12. Acessar o site após o deploy completo
-mottugestor.azurewebsites.net
-
-# 13. Testar as requisições
+# 11. Testar as requisições
 ```
 
 ## Endpoints e Testes de exemplo:
