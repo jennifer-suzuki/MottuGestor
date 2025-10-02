@@ -60,7 +60,7 @@ az sql server firewall-rule create -g rg-dotnet -s sqlserver-mottugestor -n Allo
 az appservice plan create \
   --name appservice-dotnet \
   --resource-group rg-dotnet \
-  --l brazilsouth
+  --l brazilsouth \
   --sku B1 \
   --is-windows
 
