@@ -11,6 +11,7 @@ namespace MottuGestor.Domain.Entities
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; } = string.Empty;
 
+        public string Rfid { get; set; } = string.Empty;
         public string Placa { get; private set; } = string.Empty;
         public StatusMoto Status { get; private set; }
         public string UsuarioId { get; private set; } = string.Empty;
@@ -19,14 +20,20 @@ namespace MottuGestor.Domain.Entities
 
         private Moto() { }
 
-        public Moto(string placa, StatusMoto status, string usuarioId)
+        public Moto(string rfid, string placa, StatusMoto status, string usuarioId)
         {
             if (string.IsNullOrWhiteSpace(placa))
                 throw new ArgumentException("Placa é obrigatória.", nameof(placa));
-
+            
+            Rfid = rfid;
             Placa = placa.Trim().ToUpper();
             Status = status;
             UsuarioId = usuarioId;
+        }
+        
+        public void AtualizarRfid(string novoRfid)
+        {
+            Rfid = novoRfid;
         }
 
         public void AtualizarPlaca(string novaPlaca)
@@ -40,5 +47,6 @@ namespace MottuGestor.Domain.Entities
         {
             Status = novoStatus;
         }
+        
     }
 }

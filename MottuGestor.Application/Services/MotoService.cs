@@ -13,19 +13,19 @@ public class MotoService : IMotoService
     public async Task<List<MotoDto>> ListAsync()
     {
         var list = await _repo.ListAsync();
-        return list.Select(m => new MotoDto { Id = m.Id, Placa = m.Placa, Status = m.Status, UsuarioId = m.UsuarioId }).ToList();
+        return list.Select(m => new MotoDto { Id = m.Id, Rfid = m.Rfid, Placa = m.Placa, Status = m.Status, UsuarioId = m.UsuarioId }).ToList();
     }
 
     public async Task<MotoDto?> GetByIdAsync(string id)
     {
         var m = await _repo.GetByIdAsync(id);
         if (m is null) return null;
-        return new MotoDto { Id = m.Id, Placa = m.Placa, Status = m.Status, UsuarioId = m.UsuarioId };
+        return new MotoDto { Id = m.Id, Rfid = m.Rfid, Placa = m.Placa, Status = m.Status, UsuarioId = m.UsuarioId };
     }
 
     public async Task<MotoDto> CreateAsync(MotoDto dto)
     {
-        var entity = new Moto(dto.Placa, dto.Status, dto.UsuarioId);
+        var entity = new Moto(dto.Rfid, dto.Placa, dto.Status, dto.UsuarioId);
         await _repo.AddAsync(entity);
         dto.Id = entity.Id;
         return dto;
@@ -35,6 +35,7 @@ public class MotoService : IMotoService
     {
         var m = await _repo.GetByIdAsync(id);
         if (m is null) return false;
+        m.AtualizarRfid(dto.Rfid);
         m.AtualizarPlaca(dto.Placa);
         m.AtualizarStatus(dto.Status);
         await _repo.UpdateAsync(m);
