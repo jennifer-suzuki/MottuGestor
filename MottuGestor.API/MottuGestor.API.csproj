@@ -39,8 +39,4 @@
       <ProjectReference Include="..\MottuGestor.Infrastructure\MottuGestor.Infrastructure.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Controllers\" />
-    </ItemGroup>
-
 </Project>
