@@ -10,8 +10,7 @@ namespace MottuGestor.Domain.Entities
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; } = string.Empty;
 
-        public string Descricao { get; private set; } = string.Empty;
-        public DateTime Data { get; private set; } = DateTime.UtcNow;
+        public string Endereco { get; private set; } = string.Empty;
         public string UsuarioId { get; private set; } = string.Empty;
         public string MotoId { get; private set; } = string.Empty;
 
@@ -19,23 +18,14 @@ namespace MottuGestor.Domain.Entities
         {
         }
 
-        public Patio(string descricao, DateTime data, string usuarioId, string motoId)
+        public Patio(string endereco, string usuarioId, string motoId)
         {
-            if (string.IsNullOrWhiteSpace(descricao))
-                throw new ArgumentException("Descrição é obrigatória.", nameof(descricao));
-            if (data == default) data = DateTime.UtcNow;
+            if (string.IsNullOrWhiteSpace(endereco))
+                throw new ArgumentException("Endereço é obrigatório.", nameof(endereco));
 
-            Descricao = descricao.Trim();
-            Data = data;
+            Endereco = endereco.Trim();
             UsuarioId = usuarioId;
             MotoId = motoId;
-        }
-
-        public void Reagendar(DateTime novaData)
-        {
-            if (novaData < DateTime.UtcNow.AddDays(-1))
-                throw new ArgumentException("Não é permitido agendar no passado distante.");
-            Data = novaData;
         }
     }
 }
