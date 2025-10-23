@@ -1,64 +1,37 @@
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+using MottuGestor.Domain.ValueObjects;
+
 namespace MottuGestor.Domain.Entities;
 
 public class Usuario
 {
     
-    public Guid UsuarioId { get; private set; }
+    [BsonId]
+    [BsonRepresentation(BsonType.ObjectId)]
+    public string Id { get; set; } = string.Empty;
+
     public string Nome { get; private set; } = string.Empty;
-    public string Email { get; private set; } = string.Empty;
-    public string SenhaHash { get; private set; } = string.Empty;
-    public DateTime DataCadastro { get; private set; }
-    
-    public Usuario(string nome, string email, string senhaHash)
+    public Email Email { get; private set; } = default!;
+
+    private Usuario() { }
+
+    public Usuario(string nome, Email email)
     {
-        UsuarioId = Guid.NewGuid();
-        Nome = ValidarNome(nome);
-        Email = ValidarEmail(email);
-        SenhaHash = ValidarSenha(senhaHash);
-        DataCadastro = DateTime.UtcNow;
+        AlterarNome(nome);
+        Email = email;
     }
 
-    public Usuario()
-    {
-        DataCadastro = DateTime.UtcNow;
-    }
-    
-    public void AtualizarNome(string novoNome)
-    {
-        Nome = ValidarNome(novoNome);
-    }
-
-    public void AtualizarEmail(string novoEmail)
-    {
-        Email = ValidarEmail(novoEmail);
-    }
-
-    public void AtualizarSenha(string novaSenhaHash)
-    {
-        SenhaHash = ValidarSenha(novaSenhaHash);
-    }
-    
-    private string ValidarNome(string nome)
+    public void AlterarNome(string nome)
     {
         if (string.IsNullOrWhiteSpace(nome))
-            throw new ArgumentException("Nome não pode ser vazio.");
-        return nome.Trim();
+            throw new ArgumentException("Nome é obrigatório.", nameof(nome));
+        Nome = nome.Trim();
     }
 
-    private string ValidarEmail(string email)
+    public void AlterarEmail(Email novoEmail)
     {
-        if (string.IsNullOrWhiteSpace(email) || !email.Contains("@"))
-            throw new ArgumentException("Email inválido.");
-        return email.Trim();
+        Email = novoEmail ?? throw new ArgumentNullException(nameof(novoEmail), "Email obrigatório");
     }
-
-    private string ValidarSenha(string senhaHash)
-    {
-        if (string.IsNullOrWhiteSpace(senhaHash))
-            throw new ArgumentException("Senha não pode ser vazia.");
-        return senhaHash;
-    }
-    
-    public record UsuarioResponse(Guid UsuarioId, string Nome, string Email);
 }
 

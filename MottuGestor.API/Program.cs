@@ -2,7 +2,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 using MottuGestor.Domain.Entities;
-using MottuGestor.Infrastructure.Context;
 using MottuGestor.Infrastructure.Repositories;
 
 namespace GestMottu.API
@@ -42,22 +41,10 @@ namespace GestMottu.API
                 x.IncludeXmlComments(xmlPath);
             });
 
-            builder.Services.AddDbContext<GestMottuContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-            // Registrar repositório genérico para todas as entidades
-            builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-
             var app = builder.Build();
             
             app.UseSwagger();
             app.UseSwaggerUI();
-            
-            using (var scope = app.Services.CreateScope())
-            {
-                var context = scope.ServiceProvider.GetRequiredService<GestMottuContext>();
-                context.Database.EnsureCreated();
-            }
 
             //app.UseHttpsRedirection();
             app.UseAuthorization();

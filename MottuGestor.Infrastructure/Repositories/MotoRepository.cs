@@ -1,39 +1,27 @@
 using Microsoft.EntityFrameworkCore;
+using MongoDB.Driver;
 using MottuGestor.Domain.Entities;
-using MottuGestor.Domain.Pagination;
-using MottuGestor.Infrastructure.Context;
+using MottuGestor.Infrastructure.Data;
 
 namespace MottuGestor.Infrastructure.Repositories;
 
 public class MotoRepository : IMotoRepository
 {
-    private readonly GestMottuContext _context;
-    public MotoRepository(GestMottuContext context) => _context = context;
+    private readonly MongoDbContext _ctx;
+    public MotoRepository(MongoDbContext ctx) => _ctx = ctx;
 
-    public async Task<PageResult<Moto>> GetPaginationAsyncMoto(
-        int page, int pageSize, CancellationToken cancellationToken = default)
-    {
-        if (page <= 0) page = 1;
-        if (pageSize <= 0) pageSize = 10;
+    public async Task<Moto?> GetByIdAsync(string id) =>
+        await _ctx.Motos.Find(m => m.Id == id).FirstOrDefaultAsync();
 
-        var query = _context.Motos
-            .AsNoTracking()
-            .OrderByDescending(n => n.DataCadastro);
+    public async Task<List<Moto>> ListAsync() =>
+        await _ctx.Motos.Find(_ => true).ToListAsync();
 
-        var total = await query.CountAsync(cancellationToken);
+    public async Task AddAsync(Moto moto) =>
+        await _ctx.Motos.InsertOneAsync(moto);
 
-        var items = await query
-            .Skip((page - 1) * pageSize)
-            .Take(pageSize)
-            .ToListAsync(cancellationToken);
+    public async Task UpdateAsync(Moto moto) =>
+        await _ctx.Motos.ReplaceOneAsync(m => m.Id == moto.Id, moto);
 
-        return new PageResult<Moto>
-        {
-            Items = items,
-            Total = total,
-            HasMore = page * pageSize < total,
-            Page = page,
-            PageSize = pageSize
-        };
-    }
+    public async Task DeleteAsync(string id) =>
+        await _ctx.Motos.DeleteOneAsync(m => m.Id == id);
 }

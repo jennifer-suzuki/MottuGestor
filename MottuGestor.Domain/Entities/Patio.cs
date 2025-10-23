@@ -1,33 +1,41 @@
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 using MottuGestor.Domain.ValueObjects;
 
 namespace MottuGestor.Domain.Entities
 {
     public class Patio
     {
-        public Guid Id { get; set; }
-        public string Nome { get; set; }
-        public Endereco Endereco { get; set; }
-        public int Capacidade { get; set; }
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; } = string.Empty;
 
-        public Patio(string nome, Endereco endereco, int capacidade)
-        {
-            Id = Guid.NewGuid();
-            Nome = nome;
-            Endereco = endereco;
-            Capacidade = capacidade;
-        }
-        
-        public Patio() { }
+        public string Descricao { get; private set; } = string.Empty;
+        public DateTime Data { get; private set; } = DateTime.UtcNow;
+        public string UsuarioId { get; private set; } = string.Empty;
+        public string MotoId { get; private set; } = string.Empty;
 
-        public void AtualizarDados(string nome, Endereco endereco, int capacidade)
+        private Patio()
         {
-            if (endereco is null) throw new Exception("Endereço obrigatório.");
-            if (capacidade < 0) throw new Exception("Capacidade não pode ser negativa.");
-            Nome = nome;
-            Endereco = endereco;
-            Capacidade = capacidade;
         }
-        
-        public record PatioResponse(Guid Id, string Nome, string Endereco, int Capacidade);
+
+        public Patio(string descricao, DateTime data, string usuarioId, string motoId)
+        {
+            if (string.IsNullOrWhiteSpace(descricao))
+                throw new ArgumentException("Descrição é obrigatória.", nameof(descricao));
+            if (data == default) data = DateTime.UtcNow;
+
+            Descricao = descricao.Trim();
+            Data = data;
+            UsuarioId = usuarioId;
+            MotoId = motoId;
+        }
+
+        public void Reagendar(DateTime novaData)
+        {
+            if (novaData < DateTime.UtcNow.AddDays(-1))
+                throw new ArgumentException("Não é permitido agendar no passado distante.");
+            Data = novaData;
+        }
     }
 }

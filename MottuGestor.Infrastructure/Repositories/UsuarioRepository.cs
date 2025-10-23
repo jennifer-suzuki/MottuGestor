@@ -1,39 +1,27 @@
 using Microsoft.EntityFrameworkCore;
+using MongoDB.Driver;
 using MottuGestor.Domain.Entities;
-using MottuGestor.Domain.Pagination;
-using MottuGestor.Infrastructure.Context;
+using MottuGestor.Infrastructure.Data;
 
 namespace MottuGestor.Infrastructure.Repositories;
 
 public class UsuarioRepository : IUsuarioRepository
 {
-    private readonly GestMottuContext _context;
-    public UsuarioRepository(GestMottuContext context) => _context = context;
+    private readonly MongoDbContext _ctx;
+    public UsuarioRepository(MongoDbContext ctx) => _ctx = ctx;
 
-    public async Task<PageResult<Usuario>> GetPaginationAsyncUsuario(
-        int page, int pageSize, CancellationToken cancellationToken = default)
-    {
-        if (page <= 0) page = 1;
-        if (pageSize <= 0) pageSize = 10;
+    public async Task<Usuario?> GetByIdAsync(string id) =>
+        await _ctx.Usuarios.Find(u => u.Id == id).FirstOrDefaultAsync();
 
-        var query = _context.Usuario
-            .AsNoTracking()
-            .OrderByDescending(n => n.DataCadastro);
+    public async Task<List<Usuario>> ListAsync() =>
+        await _ctx.Usuarios.Find(_ => true).ToListAsync();
 
-        var total = await query.CountAsync(cancellationToken);
+    public async Task AddAsync(Usuario usuario) =>
+        await _ctx.Usuarios.InsertOneAsync(usuario);
 
-        var items = await query
-            .Skip((page - 1) * pageSize)
-            .Take(pageSize)
-            .ToListAsync(cancellationToken);
+    public async Task UpdateAsync(Usuario usuario) =>
+        await _ctx.Usuarios.ReplaceOneAsync(u => u.Id == usuario.Id, usuario);
 
-        return new PageResult<Usuario>
-        {
-            Items = items,
-            Total = total,
-            HasMore = page * pageSize < total,
-            Page = page,
-            PageSize = pageSize
-        };
-    }
+    public async Task DeleteAsync(string id) =>
+        await _ctx.Usuarios.DeleteOneAsync(u => u.Id == id);
 }

@@ -1,63 +1,44 @@
 
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 using MottuGestor.Domain.Enums;
 
 namespace MottuGestor.Domain.Entities
 {
     public class Moto
     {
-        public Guid MotoId { get; private set; }
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; } = string.Empty;
+
         public string Placa { get; private set; } = string.Empty;
-        public string Modelo { get; private set; } = string.Empty;
-        public string Marca { get; private set; } = string.Empty;
-        public string RfidTag { get; private set; } = string.Empty;
-        public int Ano { get; private set; }
-        public DateTime DataCadastro { get; private set; }
-        public string Problema { get; private set; } = string.Empty;
-        public string Localizacao { get; private set; } = string.Empty;
         public StatusMoto Status { get; private set; }
-        
-        public Moto(string rfidTag, string placa, string modelo, string marca, int ano, string problema = null, string localizacao = null)
+        public string UsuarioId { get; private set; } = string.Empty;
+
+        public List<Patio> Patios { get; private set; } = new();
+
+        private Moto() { }
+
+        public Moto(string placa, StatusMoto status, string usuarioId)
         {
-            MotoId = Guid.NewGuid();
-            RfidTag = ValidateRfid(rfidTag);
-            Placa = placa;
-            Modelo = modelo;
-            Marca = marca;
-            Ano = ano;
-            Problema = problema;
-            Localizacao = localizacao;
-            DataCadastro = DateTime.UtcNow;
-            Status = StatusMoto.Disponivel;
+            if (string.IsNullOrWhiteSpace(placa))
+                throw new ArgumentException("Placa é obrigatória.", nameof(placa));
+
+            Placa = placa.Trim().ToUpper();
+            Status = status;
+            UsuarioId = usuarioId;
         }
 
-        // Validação simples para RFID
-        private string ValidateRfid(string rfid)
+        public void AtualizarPlaca(string novaPlaca)
         {
-            if (string.IsNullOrWhiteSpace(rfid))
-                throw new ArgumentException("RfidTag não pode ser vazia.");
-
-            return rfid;
-        }
-        public Moto()
-        {
-            DataCadastro = DateTime.UtcNow;
-            Status = StatusMoto.Disponivel;
+            if (string.IsNullOrWhiteSpace(novaPlaca))
+                throw new ArgumentException("Placa é obrigatória.", nameof(novaPlaca));
+            Placa = novaPlaca.Trim().ToUpper();
         }
 
-        public void AtualizarDados(string rfidTag, string placa, string modelo, string marca, int ano, string problema, string localizacao)
+        public void AtualizarStatus(StatusMoto novoStatus)
         {
-            if (ano < 1800) throw new Exception("Ano mínimo é 1800.");
-            
-            RfidTag = rfidTag;
-            Placa = placa;
-            Modelo = modelo;
-            Marca = marca;
-            Ano = ano;
-            Problema = problema;
-            Localizacao = localizacao;
+            Status = novoStatus;
         }
-
-        public record MotoResponse(Guid MotoId, string Placa, string Modelo, string RfidTag, string Status, string Localizacao);
-
     }
 }

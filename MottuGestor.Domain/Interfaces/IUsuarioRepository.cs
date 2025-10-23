@@ -1,9 +1,12 @@
 using MottuGestor.Domain.Entities;
-using MottuGestor.Domain.Pagination;
 
 namespace MottuGestor.Infrastructure.Repositories;
 
 public interface IUsuarioRepository
 {
-    Task<PageResult<Usuario>> GetPaginationAsyncUsuario(int page, int pageSize, CancellationToken cancellationToken = default);
+    Task<Usuario?> GetByIdAsync(string id);
+    Task<List<Usuario>> ListAsync();
+    Task AddAsync(Usuario usuario);
+    Task UpdateAsync(Usuario usuario);
+    Task DeleteAsync(string id);
 }

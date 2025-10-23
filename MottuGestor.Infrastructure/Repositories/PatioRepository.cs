@@ -1,39 +1,27 @@
 using Microsoft.EntityFrameworkCore;
+using MongoDB.Driver;
 using MottuGestor.Domain.Entities;
-using MottuGestor.Domain.Pagination;
-using MottuGestor.Infrastructure.Context;
+using MottuGestor.Infrastructure.Data;
 
 namespace MottuGestor.Infrastructure.Repositories;
 
 public class PatioRepository : IPatioRepository
 {
-    private readonly GestMottuContext _context;
-    public PatioRepository(GestMottuContext context) => _context = context;
+    private readonly MongoDbContext _ctx;
+    public PatioRepository(MongoDbContext ctx) => _ctx = ctx;
 
-    public async Task<PageResult<Patio>> GetPaginationAsyncPatio(
-        int page, int pageSize, CancellationToken cancellationToken = default)
-    {
-        if (page <= 0) page = 1;
-        if (pageSize <= 0) pageSize = 10;
+    public async Task<Patio?> GetByIdAsync(string id) =>
+        await _ctx.Patios.Find(p => p.Id == id).FirstOrDefaultAsync();
 
-        var query = _context.Patios
-            .AsNoTracking()
-            .OrderByDescending(n => n.Nome);
+    public async Task<List<Patio>> ListAsync() =>
+        await _ctx.Patios.Find(_ => true).ToListAsync();
 
-        var total = await query.CountAsync(cancellationToken);
+    public async Task AddAsync(Patio patio) =>
+        await _ctx.Patios.InsertOneAsync(patio);
 
-        var items = await query
-            .Skip((page - 1) * pageSize)
-            .Take(pageSize)
-            .ToListAsync(cancellationToken);
+    public async Task UpdateAsync(Patio patio) =>
+        await _ctx.Patios.ReplaceOneAsync(p => p.Id == patio.Id, patio);
 
-        return new PageResult<Patio>
-        {
-            Items = items,
-            Total = total,
-            HasMore = page * pageSize < total,
-            Page = page,
-            PageSize = pageSize
-        };
-    }
+    public async Task DeleteAsync(string id) =>
+        await _ctx.Patios.DeleteOneAsync(p => p.Id == id);
 }
