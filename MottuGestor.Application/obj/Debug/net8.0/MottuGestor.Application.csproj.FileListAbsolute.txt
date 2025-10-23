@@ -9,7 +9,6 @@ C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Application\obj\Debug\ne
 C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Application\obj\Debug\net8.0\MottuGestor.Application.AssemblyInfo.cs
 C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Application\obj\Debug\net8.0\MottuGestor.Application.csproj.CoreCompileInputs.cache
 C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Application\obj\Debug\net8.0\MottuGestor.Application.sourcelink.json
-C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Application\obj\Debug\net8.0\MottuGes.37501344.Up2Date
 C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Application\obj\Debug\net8.0\MottuGestor.Application.dll
 C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Application\obj\Debug\net8.0\refint\MottuGestor.Application.dll
 C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Application\obj\Debug\net8.0\MottuGestor.Application.pdb
@@ -46,3 +45,4 @@ C:\challenge-dotnet\MottuGestor.Application\obj\Debug\net8.0\MottuGestor.Applica
 C:\challenge-dotnet\MottuGestor.Application\obj\Debug\net8.0\refint\MottuGestor.Application.dll
 C:\challenge-dotnet\MottuGestor.Application\obj\Debug\net8.0\MottuGestor.Application.pdb
 C:\challenge-dotnet\MottuGestor.Application\obj\Debug\net8.0\ref\MottuGestor.Application.dll
+C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Application\obj\Debug\net8.0\MottuGestor.Application.csproj.CopyComplete

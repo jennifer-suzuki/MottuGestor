@@ -1,7 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
+using MongoDB.Driver;
+using MottuGestor.Application.Interfaces;
+using MottuGestor.Application.Services;
 using MottuGestor.Domain.Entities;
+using MottuGestor.Infrastructure.Data;
 using MottuGestor.Infrastructure.Repositories;
 
 namespace GestMottu.API
@@ -12,44 +16,89 @@ namespace GestMottu.API
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Configuration
-                   .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                   .AddEnvironmentVariables();
-
-            builder.Services.AddControllers()
-                .AddJsonOptions(o =>
-                {
-                    o.JsonSerializerOptions.WriteIndented = true;
-                });;
-
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen(x =>
+            builder.Services.AddSingleton<IMongoClient>(sp =>
             {
-                x.SwaggerDoc("v1", new OpenApiInfo
+                var config = builder.Configuration;
+                var connString = config.GetConnectionString("MongoDb") ?? "mongodb://localhost:27017";
+                return new MongoClient(connString);
+            });
+
+            builder.Services.AddSingleton<MongoDbContext>(sp =>
+            {
+                var config = builder.Configuration;
+                var client = sp.GetRequiredService<IMongoClient>();
+                var dbName = "MottuGestor";
+                return new MongoDbContext(client, dbName);
+            });
+            
+            builder.Services.AddScoped<IMotoRepository, MotoRepository>();
+            builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+            builder.Services.AddScoped<IPatioRepository, PatioRepository>();
+            builder.Services.AddScoped<IMotoService, MotoService>();
+            builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+            builder.Services.AddScoped<IPatioService, PatioService>();
+
+            builder.Services.AddControllers();
+            builder.Services.AddEndpointsApiExplorer();
+            
+            builder.Services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Title = builder.Configuration["Swagger:Title"] ?? "GestMottu API",
-                    Description = "API RESTful para gestão de motos com Clean Architecture e DDD",
+                    Title = "Challenge - Aplicativo de Gestão para Mottu",
+                    Version = "v1",
+                    Description = "Uma aplicação para Mottu que faz a gestão das motos, pátios e usuários.",
                     Contact = new OpenApiContact
                     {
                         Name = "Equipe MottuGestor",
-                        Email = "contato@mottu.com.br"
+                        Email = "mottugestor@gmail.com"
                     }
                 });
 
-                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                c.SwaggerDoc("v2", new OpenApiInfo
+                {
+                    Title = "Challenge - Aplicativo de Gestão para Mottu",
+                    Version = "v2",
+                    Description = "MottuGestor - versão 2.",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Equipe MottuGestor",
+                        Email = "mottugestor@gmail.com"
+                    }
+                });
+
+                var xmlFile = $"{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                x.IncludeXmlComments(xmlPath);
+                if (File.Exists(xmlPath))
+                    c.IncludeXmlComments(xmlPath);
             });
+            
+            builder.Services.AddHealthChecks()
+                .AddMongoDb(
+                    sp => sp.GetRequiredService<IMongoClient>(),
+                    name: "mongodb",
+                    timeout: TimeSpan.FromSeconds(3),
+                    tags: new[] { "db", "mongo" }
+                );
 
             var app = builder.Build();
-            
-            app.UseSwagger();
-            app.UseSwaggerUI();
 
-            //app.UseHttpsRedirection();
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI(opt =>
+                {
+                    opt.SwaggerEndpoint("/swagger/v1/swagger.json", "API MottuGestor v1");
+                    opt.SwaggerEndpoint("/swagger/v2/swagger.json", "API MottuGestor v2");
+                    opt.RoutePrefix = "swagger";
+                });
+            }
+
+            app.UseHttpsRedirection();
             app.UseAuthorization();
             app.MapControllers();
-            app.MapGet("/", () => Results.Redirect("/swagger/index.html"));
+            app.MapHealthChecks("/health");
+
             app.Run();
         }
     }
