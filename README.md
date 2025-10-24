@@ -34,7 +34,7 @@ Uma API que permite a gestão completa das motos, pátios e usuários, com funci
 
 ---
 
-## Passo a passo do deploy
+## Como rodar o projeto
 
 ```bash
 # 1. Subir o banco de dados via Docker
