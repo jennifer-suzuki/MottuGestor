@@ -1,15 +1,17 @@
 
-# CP5: MottuGestor
+# Challenge: MottuGestor
 
 ## Projeto: API REST para Gestão de Motos e Pátios - Mottu
 
-Este CP5 da disciplina Advanced Business Development with .NET e tem como objetivo desenvolver uma API RESTful utilizando .NET 8 e MongoDB.
+Este projeto da disciplina Advanced Business Development with .NET tem como objetivo desenvolver uma API RESTful utilizando .NET 8 e MongoDB.
 
 Uma API que permite a gestão completa das motos, pátios e usuários, com funcionalidades para cadastrar, consultar, atualizar e deletar registros.
 
 ## Integrantes
 
+- Felipe Levy Stephens Fidelix - RM556426
 - Jennifer Kaori Suzuki  - RM554661
+- Pedro Henrique Jorge de Paula - RM558833
 
 ---
 
@@ -51,6 +53,22 @@ dotnet build
 # 4. Rodar a API
 dotnet run --project MottuGestor.API
 ```
+
+## Autenticação
+
+Faça uma requisição Post no Auth
+```json
+{
+  "email": "email@gmail.com",
+  "senha": "senha123"
+}
+```
+
+Copie o token retornado e cole no botão "Authorize" no formato:
+```
+Bearer {token}
+```
+
 
 ## Endpoints e Testes de exemplo:
 
@@ -119,4 +137,12 @@ dotnet run --project MottuGestor.API
   "nome": "Márcio da Silva",
   "email": "marcio@gmail.com"
 }
+```
+
+## Execução dos testes:
+
+Para executar os testes, use o seguinte comando:
+
+```bash
+dotnet test
 ```
