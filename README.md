@@ -138,3 +138,11 @@ Bearer {token}
   "email": "marcio@gmail.com"
 }
 ```
+
+## Execução dos testes:
+
+Para executar os testes, use o seguinte comando:
+
+```bash
+dotnet test
+```
