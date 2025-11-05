@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\labsfiap\\RiderProjects\\MottuGestor\\MottuGestor.API\\MottuGestor.API.csproj": {}
+    "C:\\challenge-sprint4\\MottuGestor.API\\MottuGestor.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\labsfiap\\RiderProjects\\MottuGestor\\MottuGestor.API\\MottuGestor.API.csproj": {
+    "C:\\challenge-sprint4\\MottuGestor.API\\MottuGestor.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\labsfiap\\RiderProjects\\MottuGestor\\MottuGestor.API\\MottuGestor.API.csproj",
+        "projectUniqueName": "C:\\challenge-sprint4\\MottuGestor.API\\MottuGestor.API.csproj",
         "projectName": "MottuGestor.API",
-        "projectPath": "C:\\Users\\labsfiap\\RiderProjects\\MottuGestor\\MottuGestor.API\\MottuGestor.API.csproj",
-        "packagesPath": "C:\\Users\\labsfiap\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\labsfiap\\RiderProjects\\MottuGestor\\MottuGestor.API\\obj\\",
+        "projectPath": "C:\\challenge-sprint4\\MottuGestor.API\\MottuGestor.API.csproj",
+        "packagesPath": "C:\\Users\\jenni\\.nuget\\packages\\",
+        "outputPath": "C:\\challenge-sprint4\\MottuGestor.API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\labsfiap\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\jenni\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,21 +26,20 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\labsfiap\\RiderProjects\\MottuGestor\\MottuGestor.Application\\MottuGestor.Application.csproj": {
-                "projectPath": "C:\\Users\\labsfiap\\RiderProjects\\MottuGestor\\MottuGestor.Application\\MottuGestor.Application.csproj"
+              "C:\\challenge-sprint4\\MottuGestor.Application\\MottuGestor.Application.csproj": {
+                "projectPath": "C:\\challenge-sprint4\\MottuGestor.Application\\MottuGestor.Application.csproj"
               },
-              "C:\\Users\\labsfiap\\RiderProjects\\MottuGestor\\MottuGestor.Domain\\MottuGestor.Domain.csproj": {
-                "projectPath": "C:\\Users\\labsfiap\\RiderProjects\\MottuGestor\\MottuGestor.Domain\\MottuGestor.Domain.csproj"
+              "C:\\challenge-sprint4\\MottuGestor.Domain\\MottuGestor.Domain.csproj": {
+                "projectPath": "C:\\challenge-sprint4\\MottuGestor.Domain\\MottuGestor.Domain.csproj"
               },
-              "C:\\Users\\labsfiap\\RiderProjects\\MottuGestor\\MottuGestor.Infrastructure\\MottuGestor.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\labsfiap\\RiderProjects\\MottuGestor\\MottuGestor.Infrastructure\\MottuGestor.Infrastructure.csproj"
+              "C:\\challenge-sprint4\\MottuGestor.Infrastructure\\MottuGestor.Infrastructure.csproj": {
+                "projectPath": "C:\\challenge-sprint4\\MottuGestor.Infrastructure\\MottuGestor.Infrastructure.csproj"
               }
             }
           }
@@ -49,6 +48,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -58,6 +62,14 @@
             "AspNetCore.HealthChecks.MongoDb": {
               "target": "Package",
               "version": "[9.0.0, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.21, )"
+            },
+            "Microsoft.AspNetCore.Mvc": {
+              "target": "Package",
+              "version": "[2.3.0, )"
             },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
@@ -87,6 +99,10 @@
               "target": "Package",
               "version": "[8.0.19, )"
             },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[8.14.0, )"
+            },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[8.0.7, )"
@@ -95,6 +111,10 @@
               "target": "Package",
               "version": "[3.5.0, )"
             },
+            "NuGet.Versioning": {
+              "target": "Package",
+              "version": "[6.14.0, )"
+            },
             "Oracle.EntityFrameworkCore": {
               "target": "Package",
               "version": "[9.23.90, )"
@@ -102,6 +122,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.6.2, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[8.14.0, )"
             }
           },
           "imports": [
@@ -123,24 +147,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.121/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.410/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\labsfiap\\RiderProjects\\MottuGestor\\MottuGestor.Application\\MottuGestor.Application.csproj": {
+    "C:\\challenge-sprint4\\MottuGestor.Application\\MottuGestor.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\labsfiap\\RiderProjects\\MottuGestor\\MottuGestor.Application\\MottuGestor.Application.csproj",
+        "projectUniqueName": "C:\\challenge-sprint4\\MottuGestor.Application\\MottuGestor.Application.csproj",
         "projectName": "MottuGestor.Application",
-        "projectPath": "C:\\Users\\labsfiap\\RiderProjects\\MottuGestor\\MottuGestor.Application\\MottuGestor.Application.csproj",
-        "packagesPath": "C:\\Users\\labsfiap\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\labsfiap\\RiderProjects\\MottuGestor\\MottuGestor.Application\\obj\\",
+        "projectPath": "C:\\challenge-sprint4\\MottuGestor.Application\\MottuGestor.Application.csproj",
+        "packagesPath": "C:\\Users\\jenni\\.nuget\\packages\\",
+        "outputPath": "C:\\challenge-sprint4\\MottuGestor.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\labsfiap\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\jenni\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -149,15 +173,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\labsfiap\\RiderProjects\\MottuGestor\\MottuGestor.Domain\\MottuGestor.Domain.csproj": {
-                "projectPath": "C:\\Users\\labsfiap\\RiderProjects\\MottuGestor\\MottuGestor.Domain\\MottuGestor.Domain.csproj"
+              "C:\\challenge-sprint4\\MottuGestor.Domain\\MottuGestor.Domain.csproj": {
+                "projectPath": "C:\\challenge-sprint4\\MottuGestor.Domain\\MottuGestor.Domain.csproj"
               }
             }
           }
@@ -166,6 +189,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -193,24 +221,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.121/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.410/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\labsfiap\\RiderProjects\\MottuGestor\\MottuGestor.Domain\\MottuGestor.Domain.csproj": {
+    "C:\\challenge-sprint4\\MottuGestor.Domain\\MottuGestor.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\labsfiap\\RiderProjects\\MottuGestor\\MottuGestor.Domain\\MottuGestor.Domain.csproj",
+        "projectUniqueName": "C:\\challenge-sprint4\\MottuGestor.Domain\\MottuGestor.Domain.csproj",
         "projectName": "MottuGestor.Domain",
-        "projectPath": "C:\\Users\\labsfiap\\RiderProjects\\MottuGestor\\MottuGestor.Domain\\MottuGestor.Domain.csproj",
-        "packagesPath": "C:\\Users\\labsfiap\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\labsfiap\\RiderProjects\\MottuGestor\\MottuGestor.Domain\\obj\\",
+        "projectPath": "C:\\challenge-sprint4\\MottuGestor.Domain\\MottuGestor.Domain.csproj",
+        "packagesPath": "C:\\Users\\jenni\\.nuget\\packages\\",
+        "outputPath": "C:\\challenge-sprint4\\MottuGestor.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\labsfiap\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\jenni\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -219,7 +247,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -232,6 +259,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -263,24 +295,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.121/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.410/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\labsfiap\\RiderProjects\\MottuGestor\\MottuGestor.Infrastructure\\MottuGestor.Infrastructure.csproj": {
+    "C:\\challenge-sprint4\\MottuGestor.Infrastructure\\MottuGestor.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\labsfiap\\RiderProjects\\MottuGestor\\MottuGestor.Infrastructure\\MottuGestor.Infrastructure.csproj",
+        "projectUniqueName": "C:\\challenge-sprint4\\MottuGestor.Infrastructure\\MottuGestor.Infrastructure.csproj",
         "projectName": "MottuGestor.Infrastructure",
-        "projectPath": "C:\\Users\\labsfiap\\RiderProjects\\MottuGestor\\MottuGestor.Infrastructure\\MottuGestor.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\labsfiap\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\labsfiap\\RiderProjects\\MottuGestor\\MottuGestor.Infrastructure\\obj\\",
+        "projectPath": "C:\\challenge-sprint4\\MottuGestor.Infrastructure\\MottuGestor.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\jenni\\.nuget\\packages\\",
+        "outputPath": "C:\\challenge-sprint4\\MottuGestor.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\labsfiap\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\jenni\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -289,15 +321,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\labsfiap\\RiderProjects\\MottuGestor\\MottuGestor.Domain\\MottuGestor.Domain.csproj": {
-                "projectPath": "C:\\Users\\labsfiap\\RiderProjects\\MottuGestor\\MottuGestor.Domain\\MottuGestor.Domain.csproj"
+              "C:\\challenge-sprint4\\MottuGestor.Domain\\MottuGestor.Domain.csproj": {
+                "projectPath": "C:\\challenge-sprint4\\MottuGestor.Domain\\MottuGestor.Domain.csproj"
               }
             }
           }
@@ -306,6 +337,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -349,7 +385,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.121/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.410/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

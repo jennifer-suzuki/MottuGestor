@@ -733,7 +733,10 @@
           "MongoDB.Bson": "3.5.0"
         },
         "runtime": {
-          "MottuGestor.Domain.dll": {}
+          "MottuGestor.Domain.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }
