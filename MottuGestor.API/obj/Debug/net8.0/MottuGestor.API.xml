@@ -4,5 +4,80 @@
         <name>MottuGestor.API</name>
     </assembly>
     <members>
+        <member name="M:GestMottu.API.Controllers.MotoController.Get(System.Int32,System.Int32)">
+            <summary>
+            Lista todas as motos
+            </summary>
+        </member>
+        <member name="M:GestMottu.API.Controllers.MotoController.GetById(System.String)">
+            <summary>
+            Busca uma moto por ID
+            </summary>
+        </member>
+        <member name="M:GestMottu.API.Controllers.MotoController.Post(MottuGestor.Application.DTOs.MotoDto)">
+            <summary>
+            Cadastra uma moto
+            </summary>
+        </member>
+        <member name="M:GestMottu.API.Controllers.MotoController.Put(System.String,MottuGestor.Application.DTOs.MotoDto)">
+            <summary>
+            Atualiza uma moto
+            </summary>
+        </member>
+        <member name="M:GestMottu.API.Controllers.MotoController.Delete(System.String)">
+            <summary>
+            Apaga uma moto
+            </summary>
+        </member>
+        <member name="M:GestMottu.API.Controllers.PatioController.Get(System.Int32,System.Int32)">
+            <summary>
+            Lista todos os pátios
+            </summary>
+        </member>
+        <member name="M:GestMottu.API.Controllers.PatioController.GetById(System.String)">
+            <summary>
+            Busca um pátio por ID
+            </summary>
+        </member>
+        <member name="M:GestMottu.API.Controllers.PatioController.Post(MottuGestor.Application.DTOs.PatioDto)">
+            <summary>
+            Cadastra um pátio
+            </summary>
+        </member>
+        <member name="M:GestMottu.API.Controllers.PatioController.Put(System.String,MottuGestor.Application.DTOs.PatioDto)">
+            <summary>
+            Atualiza um pátio
+            </summary>
+        </member>
+        <member name="M:GestMottu.API.Controllers.PatioController.Delete(System.String)">
+            <summary>
+            Apaga um pátio
+            </summary>
+        </member>
+        <member name="M:GestMottu.API.Controllers.UsuarioController.Get(System.Int32,System.Int32)">
+            <summary>
+            Lista todos os usuários
+            </summary>
+        </member>
+        <member name="M:GestMottu.API.Controllers.UsuarioController.GetById(System.String)">
+            <summary>
+            Busca usuário por ID
+            </summary>
+        </member>
+        <member name="M:GestMottu.API.Controllers.UsuarioController.Post(MottuGestor.Application.DTOs.UsuarioDto)">
+            <summary>
+            Cadastra um usuário
+            </summary>
+        </member>
+        <member name="M:GestMottu.API.Controllers.UsuarioController.Put(System.String,MottuGestor.Application.DTOs.UsuarioDto)">
+            <summary>
+            Atualiza um usuário
+            </summary>
+        </member>
+        <member name="M:GestMottu.API.Controllers.UsuarioController.Delete(System.String)">
+            <summary>
+            Apaga um usuário
+            </summary>
+        </member>
     </members>
 </doc>

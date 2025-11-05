@@ -25,7 +25,6 @@ public class AuthController : ControllerBase
     [AllowAnonymous]
     public IActionResult Login([FromBody] LoginRequestDTO dto)
     {
-        // A partir daqui, o 'LoginRequestDto' deve ser reconhecido
         if (string.IsNullOrWhiteSpace(dto.Email) || string.IsNullOrWhiteSpace(dto.Senha))
             return BadRequest("Email e senha obrigatórios.");
 

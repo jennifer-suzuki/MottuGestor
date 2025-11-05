@@ -18,7 +18,7 @@ public class MotoTests
         var service = new MotoService(mock.Object);
         var dto = new MotoDto { Rfid = "1234", Placa = "ABC1234", Status = StatusMoto.Disponivel, UsuarioId = "1" };
         var result = await service.CreateAsync(dto);
-        
+
         Assert.Equal("1234", result.Rfid);
         Assert.Equal("ABC1234", result.Placa);
         Assert.Equal(StatusMoto.Disponivel, result.Status);

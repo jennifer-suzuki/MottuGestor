@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MottuGestor.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d1d2335bc5ea0d9ed8a87a9af1ba568696d35aa6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+be943e309ecebcf44821217a780f2b8ffdb3074a")]
 [assembly: System.Reflection.AssemblyProductAttribute("MottuGestor.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MottuGestor.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

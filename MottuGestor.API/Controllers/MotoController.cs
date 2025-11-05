@@ -13,6 +13,9 @@ public class MotoController : ControllerBase
         private readonly IMotoService _service;
         public MotoController(IMotoService service) => _service = service;
 
+        /// <summary>
+        /// Lista todas as motos
+        /// </summary>
         [HttpGet]
         [ProducesResponseType(typeof(PagedResultDto<MotoDto>), 200)]
         public async Task<ActionResult<PagedResultDto<MotoDto>>> Get([FromQuery] int page = 1, [FromQuery] int pageSize = 10)
@@ -37,6 +40,9 @@ public class MotoController : ControllerBase
             });
         }
         
+        /// <summary>
+        /// Busca uma moto por ID
+        /// </summary>
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(MotoDto), 200)]
         [ProducesResponseType(404)]
@@ -50,6 +56,9 @@ public class MotoController : ControllerBase
             return Ok(result);
         }
         
+        /// <summary>
+        /// Cadastra uma moto
+        /// </summary>
         [HttpPost]
         [ProducesResponseType(typeof(MotoDto), 201)]
         [ProducesResponseType(400)]
@@ -63,6 +72,9 @@ public class MotoController : ControllerBase
             return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
         }
         
+        /// <summary>
+        /// Atualiza uma moto
+        /// </summary>
         [HttpPut("{id}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
@@ -74,6 +86,9 @@ public class MotoController : ControllerBase
             return ok ? NoContent() : NotFound();
         }
         
+        /// <summary>
+        /// Apaga uma moto
+        /// </summary>
         [HttpDelete("{id}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]

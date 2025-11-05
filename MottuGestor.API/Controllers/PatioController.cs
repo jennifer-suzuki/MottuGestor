@@ -13,6 +13,9 @@ public class PatioController : ControllerBase
         private readonly IPatioService _service;
         public PatioController(IPatioService service) => _service = service;
         
+        /// <summary>
+        /// Lista todos os pátios
+        /// </summary>
         [HttpGet]
         [ProducesResponseType(typeof(PagedResultDto<PatioDto>), 200)]
         public async Task<ActionResult<PagedResultDto<PatioDto>>> Get([FromQuery] int page = 1, [FromQuery] int pageSize = 10)
@@ -37,7 +40,9 @@ public class PatioController : ControllerBase
             });
         }
 
-
+        /// <summary>
+        /// Busca um pátio por ID
+        /// </summary>
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(PatioDto), 200)]
         [ProducesResponseType(404)]
@@ -53,8 +58,12 @@ public class PatioController : ControllerBase
             return Ok(result);
         }
 
+        /// <summary>
+        /// Cadastra um pátio
+        /// </summary>
         [HttpPost]
         [ProducesResponseType(typeof(PatioDto), 201)]
+        [ProducesResponseType(400)]
         public async Task<ActionResult<PatioDto>> Post([FromBody] PatioDto dto)
         {
             if (!ModelState.IsValid || dto is null)
@@ -69,9 +78,13 @@ public class PatioController : ControllerBase
             return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
         }
 
+        /// <summary>
+        /// Atualiza um pátio
+        /// </summary>
         [HttpPut("{id}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
+        [ProducesResponseType(400)]
         public async Task<IActionResult> Put(string id, [FromBody] PatioDto dto)
         {
             if (!ModelState.IsValid || dto is null)
@@ -81,6 +94,9 @@ public class PatioController : ControllerBase
             return ok ? NoContent() : NotFound();
         }
         
+        /// <summary>
+        /// Apaga um pátio
+        /// </summary>
         [HttpDelete("{id}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]

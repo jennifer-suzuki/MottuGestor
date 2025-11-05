@@ -13,6 +13,9 @@ public class UsuarioController : ControllerBase
         private readonly IUsuarioService _service;
         public UsuarioController(IUsuarioService service) => _service = service;
         
+        /// <summary>
+        /// Lista todos os usuários
+        /// </summary>
         [HttpGet]
         [ProducesResponseType(typeof(PagedResultDto<UsuarioDto>), 200)]
         public async Task<ActionResult<PagedResultDto<UsuarioDto>>> Get([FromQuery] int page = 1, [FromQuery] int pageSize = 10)
@@ -37,6 +40,9 @@ public class UsuarioController : ControllerBase
             });
         }
         
+        /// <summary>
+        /// Busca usuário por ID
+        /// </summary>
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(UsuarioDto), 200)]
         [ProducesResponseType(404)]
@@ -52,8 +58,12 @@ public class UsuarioController : ControllerBase
             return Ok(result);
         }
         
+        /// <summary>
+        /// Cadastra um usuário
+        /// </summary>
         [HttpPost]
         [ProducesResponseType(typeof(UsuarioDto), 201)]
+        [ProducesResponseType(400)]
         public async Task<ActionResult<UsuarioDto>> Post([FromBody] UsuarioDto dto)
         {
             if (!ModelState.IsValid || dto is null)
@@ -68,9 +78,13 @@ public class UsuarioController : ControllerBase
             return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
         }
         
+        /// <summary>
+        /// Atualiza um usuário
+        /// </summary>
         [HttpPut("{id}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
+        [ProducesResponseType(400)]
         public async Task<IActionResult> Put(string id, [FromBody] UsuarioDto dto)
         {
             if (!ModelState.IsValid || dto is null)
@@ -80,6 +94,9 @@ public class UsuarioController : ControllerBase
             return ok ? NoContent() : NotFound();
         }
         
+        /// <summary>
+        /// Apaga um usuário
+        /// </summary>
         [HttpDelete("{id}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
