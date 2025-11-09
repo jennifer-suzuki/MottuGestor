@@ -39,18 +39,15 @@ Uma API que permite a gestão completa das motos, pátios e usuários, com funci
 ## Como rodar o projeto
 
 ```bash
-# 1. Subir o banco de dados via Docker
-docker run --name mongodb-container -d -p 27017:27017 mongo:latest
-
-# 2. Clonar o repositório
+# 1. Clonar o repositório
 git clone https://github.com/jennifer-suzuki/MottuGestor.git
 cd MottuGestor
 
-# 3. Restaurar e dar build no projeto
+# 2. Restaurar e dar build no projeto
 dotnet restore
 dotnet build
 
-# 4. Rodar a API
+# 3. Rodar a API
 dotnet run --project MottuGestor.API
 ```
 
