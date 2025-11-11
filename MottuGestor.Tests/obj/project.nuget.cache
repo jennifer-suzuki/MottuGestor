@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rc/BsSdOMS4=",
+  "dgSpecHash": "W0SGJ8BlqOE=",
   "success": true,
-  "projectFilePath": "C:\\Users\\jenni\\RiderProjects\\MottuGestor\\MottuGestor.Tests\\MottuGestor.Tests.csproj",
+  "projectFilePath": "C:\\challenge-sprint4\\MottuGestor.Tests\\MottuGestor.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jenni\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
     "C:\\Users\\jenni\\.nuget\\packages\\coverlet.collector\\6.0.0\\coverlet.collector.6.0.0.nupkg.sha512",
