@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "r08ZIBg3iPc=",
+  "dgSpecHash": "CnTLZDyHLLA=",
   "success": true,
-  "projectFilePath": "C:\\challenge-sprint4\\MottuGestor.API\\MottuGestor.API.csproj",
+  "projectFilePath": "C:\\Users\\jenni\\RiderProjects\\MottuGestor\\MottuGestor.API\\MottuGestor.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jenni\\.nuget\\packages\\aspnetcore.healthchecks.mongodb\\9.0.0\\aspnetcore.healthchecks.mongodb.9.0.0.nupkg.sha512",
     "C:\\Users\\jenni\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",

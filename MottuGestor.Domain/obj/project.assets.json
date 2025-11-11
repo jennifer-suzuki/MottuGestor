@@ -696,31 +696,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jenni\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\jenni\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\challenge-sprint4\\MottuGestor.Domain\\MottuGestor.Domain.csproj",
+      "projectUniqueName": "C:\\Users\\jenni\\RiderProjects\\MottuGestor\\MottuGestor.Domain\\MottuGestor.Domain.csproj",
       "projectName": "MottuGestor.Domain",
-      "projectPath": "C:\\challenge-sprint4\\MottuGestor.Domain\\MottuGestor.Domain.csproj",
+      "projectPath": "C:\\Users\\jenni\\RiderProjects\\MottuGestor\\MottuGestor.Domain\\MottuGestor.Domain.csproj",
       "packagesPath": "C:\\Users\\jenni\\.nuget\\packages\\",
-      "outputPath": "C:\\challenge-sprint4\\MottuGestor.Domain\\obj\\",
+      "outputPath": "C:\\Users\\jenni\\RiderProjects\\MottuGestor\\MottuGestor.Domain\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\jenni\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\jenni\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -769,7 +762,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.410/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.416/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
